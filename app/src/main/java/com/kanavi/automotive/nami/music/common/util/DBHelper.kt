@@ -1,5 +1,6 @@
 package com.kanavi.automotive.nami.music.common.util
 
+import com.kanavi.automotive.nami.music.data.database.model.Album
 import com.kanavi.automotive.nami.music.data.database.model.Song
 import com.kanavi.automotive.nami.music.data.repository.AlbumRepository
 import com.kanavi.automotive.nami.music.data.repository.ArtistRepository
@@ -15,6 +16,14 @@ object DBHelper : KoinComponent {
     private val songRepository: SongRepository by inject()
     private val albumRepository: AlbumRepository by inject()
     private val artistRepository: ArtistRepository by inject()
+
+    fun getAllSong(): List<Song>{
+        return songRepository.getAll()
+    }
+
+    fun getAllAlbum(): List<Album>{
+        return albumRepository.getAll()
+    }
 
     fun updateAllDatabase(listSong: ArrayList<Song>) = CoroutineScope(Dispatchers.IO).launch {
         songRepository.insertAll(listSong)

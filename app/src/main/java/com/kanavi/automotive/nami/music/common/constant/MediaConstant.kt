@@ -9,6 +9,9 @@ object MediaConstant {
     const val MEDIA_ID_USB_LIST = "__MUSIC_USB_LIST__"
     const val MEDIA_ID_USB = "__MUSIC_USB__"
 
+    const val MEDIA_ID_ALL_SONG = "__ALL_SONG__"
+    const val MEDIA_ID_ALL_ALBUM = "__ALL_ALBUM__"
+
     const val IS_SELECTED_USB = "IS_SELECTED_USB"
     const val IS_NOT_SELECTED_USB = "IS_NOT_SELECTED_USB"
 

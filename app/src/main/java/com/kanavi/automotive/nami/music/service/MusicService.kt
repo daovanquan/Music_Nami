@@ -39,6 +39,8 @@ import com.kanavi.automotive.nami.music.App
 import com.kanavi.automotive.nami.music.R
 import com.kanavi.automotive.nami.music.common.constant.Constants.isFrontDisplay
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant
+import com.kanavi.automotive.nami.music.common.constant.MediaConstant.MEDIA_ID_ALL_ALBUM
+import com.kanavi.automotive.nami.music.common.constant.MediaConstant.MEDIA_ID_ALL_SONG
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant.MEDIA_ID_RECENT_ROOT
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant.MEDIA_ID_USB_LIST
 import com.kanavi.automotive.nami.music.common.extension.getArtist
@@ -332,6 +334,11 @@ class MusicService : MediaBrowserServiceCompat(), Playback.PlaybackCallbacks, Ko
                 updateMediaSessionPlaybackState()
                 result.sendResult(musicProvider.getUsbListItems())
             }
+
+//            MEDIA_ID_ALL_SONG -> {
+//                Timber.d("load items for __MUSIC_ALL_SONG__")
+//                result.sendResult(musicProvider.getAllSong())
+//            }
 
             else -> {
                 Timber.d("load items for: $parentId")

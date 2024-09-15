@@ -3,6 +3,16 @@ package com.kanavi.automotive.nami.music.service.mediaSource
 import android.content.Context
 import android.support.v4.media.MediaBrowserCompat
 import androidx.core.net.toUri
+import androidx.room.ColumnInfo
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_ARTIST
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_ARTIST_ID
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_COVER_ART
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_DATE_ADDED
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_ID
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_SONG_COUNT
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_TITLE
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.ALBUM_YEAR
+import com.kanavi.automotive.nami.music.common.constant.DatabaseEntry.USB_ID
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant.IS_NOT_SELECTED_USB
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant.IS_SELECTED_USB
@@ -12,9 +22,11 @@ import com.kanavi.automotive.nami.music.common.extension.getUsbID
 import com.kanavi.automotive.nami.music.common.extension.isAudioFast
 import com.kanavi.automotive.nami.music.common.extension.isImageFast
 import com.kanavi.automotive.nami.music.common.extension.isVideoFast
+import com.kanavi.automotive.nami.music.common.util.DBHelper
 import com.kanavi.automotive.nami.music.data.database.model.Image
 import com.kanavi.automotive.nami.music.data.database.model.Song
 import com.kanavi.automotive.nami.music.data.database.model.Video
+import com.kanavi.automotive.nami.music.data.repository.SongRepository
 import com.kanavi.automotive.nami.music.service.MusicService
 import timber.log.Timber
 import java.lang.ref.WeakReference
@@ -98,6 +110,30 @@ class MusicProvider(private val mContext: Context) {
         Timber.d("USB List size is ${usbItems.size} $usbItems")
         return usbItems
     }
+
+//    fun getAllSong(): List<MediaBrowserCompat.MediaItem>{
+//        val allSongs: MutableList<MediaBrowserCompat.MediaItem> = ArrayList()
+//        val listSong = DBHelper.getAllSong()
+//        listSong.forEach { song ->
+//            allSongs.add(getPlayableSong(song = song))
+//        }
+//        return allSongs
+//    }
+//
+//    fun getAllAlbum(): List<MediaBrowserCompat.MediaItem>{
+//        val allAlbum: MutableList<MediaBrowserCompat.MediaItem> = ArrayList()
+//        val listAlbum = DBHelper.getAllAlbum()
+//        listAlbum.forEach { album ->
+//            allAlbum.add(
+//            UsbMediaItem.with(mContext)
+////                .mediaID(album.id)
+//                .title(album.title)
+//                .subTitle(album.artist)
+//                .build()
+//            )
+//        }
+//        return allAlbum
+//    }
 
     fun getChildren(
         mediaId: String,

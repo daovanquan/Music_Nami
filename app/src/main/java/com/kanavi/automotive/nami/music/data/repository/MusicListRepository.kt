@@ -4,6 +4,8 @@ import android.support.v4.media.MediaBrowserCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kanavi.automotive.nami.music.common.constant.MediaConstant.IS_SELECTED_USB
+import com.kanavi.automotive.nami.music.common.constant.MediaConstant.MEDIA_ID_ALL_ALBUM
+import com.kanavi.automotive.nami.music.common.constant.MediaConstant.MEDIA_ID_ALL_SONG
 import com.kanavi.automotive.nami.music.common.extension.getUsbID
 import com.kanavi.automotive.nami.music.common.extension.isAudioFast
 import com.kanavi.automotive.nami.music.data.database.model.ItemType
@@ -130,6 +132,46 @@ class MusicListRepository(mediaServiceConnection: MediaServiceConnection) {
                 _mediaItems.value = sortItemList(itemsList)
             }
         }
+
+//    private val subscriptionToRootForGetAllSong =
+//        object : MediaBrowserCompat.SubscriptionCallback() {
+//            override fun onChildrenLoaded(
+//                parentId: String, children: List<MediaBrowserCompat.MediaItem>
+//            ) {
+//                Timber.d("get mediaItems of mediaId: $parentId")
+//
+//                val itemsList = children.map { child ->
+//                    val description = child.description
+//                    val path = description.extras?.getString(EXTRA_SONG_PATH)
+//                    val title =
+//                        if (description.title.toString() != "") description.title.toString() else File(
+//                            path ?: ""
+//                        ).name
+//                    val subtitle = description.subtitle ?: ""
+//
+//                    val isLoading =
+//                        description.extras?.getBoolean(EXTRA_IS_LOADING_METADATA) ?: false
+//
+//                    MediaItemData(
+//                        mediaId = child.mediaId,
+//                        browsable = child.isBrowsable,
+//                        title = title,
+//                        itemType = ItemType.MUSIC,
+//                        subtitle = subtitle.toString(),
+//                        path = path ?: "",
+//                        albumArtUri = description.iconUri,
+//                        duration = description.extras?.getLong(EXTRA_SONG_DURATION),
+//                        dateTaken = description.extras?.getString(EXTRA_DATE_TAKEN),
+//                        isLoading = isLoading
+//                    )
+//                }
+//                _songList.value = sortItemList(itemsList)
+//            }
+//        }
+//
+//    fun subcribeToGetAllSong(){
+//        usbMediaServiceConnection.subscribe(MEDIA_ID_ALL_SONG,subscriptionToRootForGetAllSong)
+//    }
 
     fun subscribeToRootForGetUsbList(rootId: String, firstTime: Boolean = false) {
         _isSelectUsbSource.value = true
